@@ -1,54 +1,49 @@
-#You are given an array prices where prices[i] is the price of a given stock on the ith day.
-
-#You want to maximize your profit by choosing a single day to buy one stock and choosing a different day in the future to sell that stock.
-
-#Return the maximum profit you can achieve from this transaction. If you cannot achieve any profit, return 0.
+#Given an integer array nums, return true if any value appears at least twice in the array, and return false if every element is distinct.
 
  
 
 #Example 1:
 
-#Input: prices = [7,1,5,3,6,4]
-#Output: 5
-#Explanation: Buy on day 2 (price = 1) and sell on day 5 (price = 6), profit = 6-1 = 5.
-#Note that buying on day 2 and selling on day 1 is not allowed because you must buy before you sell.
+#Input: nums = [1,2,3,1]
+#Output: true
 #Example 2:
 
-#Input: prices = [7,6,4,3,1]
-#Output: 0
-#Explanation: In this case, no transactions are done and the max profit = 0.
+#Input: nums = [1,2,3,4]
+#Output: false
+#Example 3:
+
+#Input: nums = [1,1,1,3,3,4,3,2,4,2]
+#Output: true
  
 
 #Constraints:
 
-#1 <= prices.length <= 105
-#0 <= prices[i] <= 104
+#1 <= nums.length <= 105
+#-109 <= nums[i] <= 109
 
-#Python_Best Time to Buy and Sell Stock
+#Python_Duplicate
 
 
 class Solution(object):
-    def maxProfit(self, prices):
+    def containsDuplicate(self, nums):
         """
-        :type prices: List[int]
-        :rtype: int
+        :type nums: List[int]
+        :rtype: bool
         """
-        if not prices:
-            return 0
-        else:
-            min_price = prices[0]
-            max_profit = 0
-    
-            for price in prices:
-              min_price = min(min_price, price)
-              max_profit = max(max_profit, price - min_price)
-    
-            return max_profit
+        seen = set()
+        for num in nums:
+          if num in seen:
+              return True
+          seen.add(num)
+        return False
 
 c=Solution()
 
-prices1=[7,1,5,3,6,4]
-print(c.maxProfit(prices1))
+nums1=[1,2,3,1]
+print(c.containsDuplicate(nums1))
 
-prices2=[7,6,4,3,1]
-print(c.maxProfit(prices2))
+nums2=[1,2,3,4]
+print(c.containsDuplicate(nums2))
+
+nums3=[1,1,1,3,3,4,3,2,4,2]
+print(c.containsDuplicate(nums3))
